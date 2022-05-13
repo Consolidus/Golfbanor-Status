@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% block title %}Registrera användare{% endblock %} {% block content %}
+<h1 align="left">Sign Up</h3>
+<form method="POST">
+  {{ form.csrf_token() }}
+  <br />
+  <h6>Användarinformation</h6>
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-floating">
+        {{ form.email(class="form-control", type="text", id="email",
+        placeholder="{}") }}
+        <label for="email" class="form-label">{{ form.email.label }}</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-floating">
+        {{ form.first_name(class="form-control", type="text", id="first_name",
+        placeholder="{}") }}
+        <label for="first_name" class="form-label"
+          >{{ form.first_name.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-floating">
+        {{ form.last_name(class="form-control", type="text", id="last_name",
+        placeholder="{}") }}
+        <label for="last_name" class="form-label"
+          >{{ form.last_name.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-floating">
+        {{ form.password1(class="form-control", id="password1",
+        placeholder="{}") }}
+        <label for="password1" class="form-label"
+          >{{ form.password1.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="form-floating">
+        {{ form.password2(class="form-control", id="password2",
+        placeholder="{}") }}
+        <label for="password2" class="form-label"
+          >{{ form.password2.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <div align="left">
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+</form>
+{% endblock %}

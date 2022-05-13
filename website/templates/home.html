@@ -1,0 +1,138 @@
+{% extends "base.html" %} {% block title %}Status Golfbanor{% endblock %} {% block content
+%}
+<h1 align="left">Status Golfbanor</h1>
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Namn</th>
+        <th scope="col">
+          <select id="idRegion" oninput="searchData()" class="form-select" aria-label="Välj region">
+            <option selected>Region</option>
+            {% for region in regions %}
+            <option value="{{ region }}">{{ region }}</option>
+            {% endfor %}
+          </select>
+        </th>
+        <th scope="col" style="width: 16.66%">
+          <select id="idLand" oninput="searchData()" class="form-select" aria-label="Välj land">
+            <option selected>Land</option>
+            {% for country in countries %}
+            <option value="{{ country }}">{{ country }}</option>
+            {% endfor %}
+          </select>
+        </th>
+        <th scope="col">
+          <select id="idStatus" oninput="searchData()" class="form-select" aria-label="Välj status">
+            <option selected>Status</option>
+            {% for status in statuses %}
+            <option value="{{ status }}">{{ status }}</option>
+            {% endfor %}
+          </select>
+        </th>
+        <th scope="col">Från datum</th>
+        <th scope="col">Till datum</th>
+        <th scope="col">Undantag</th>
+        <th scope="col">Tävling</th>
+        <th scope="col" onclick="sortTable(8)">Sist uppdaterad</th>
+        <th scope="col">Uppdaterad av</th>
+        <th scope="col">Facebook</th>
+        <th scope="col">Bokning</th>
+        <th scope="col"></th>
+        {% if user.is_authenticated %}
+          <th scope="col"></th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody id="courseTable">
+      {% for course in courses %}
+      <tr>
+        <th scope="row">{{ course.course_id }}</th>
+        <td>
+          {% if course.website_url %}
+          <a href="{{ course.website_url }}">{{ course.course_name }}</a>
+          {% else %}
+          {{ course.course_name }}
+          {% endif %}
+        </td>
+        <td>{{ course.course_region }}</td>
+        <td>{{ course.course_country }}</td>
+        <td style="background-color: {{ color_scheme.get(course.course_status, 'white') }}">{{ course.course_status }}</td>
+
+        <td>
+          {% if course.from_date %}
+            {{ course.from_date }}
+          {% endif %}
+        </td>
+        <td>
+          {% if course.to_date %}
+            {{ course.to_date }}
+          {% endif %}
+        </td>
+        <td>
+          {% if course.undantag %}
+          <center>
+            <div class="info-box">
+              <i class="large material-icons">info_outline</i>
+              <span class="info-box-text">{{ course.undantag }}</span>
+            </div>
+          </center>
+          {% endif %}
+        </td>
+        <td>
+          {% if course.competition %}
+          {{ course.competition }}
+          {% endif %}
+        </td>
+
+        <td>{{ course.last_update }}</td>
+        <td>{{ course.updated_by }}</td>
+
+        <td align="center">
+
+          {% if course.facebook_url %}
+            <a href={{ course.facebook_url }} target="_new" type="button" class="btn btn-primary" aria-label="Facebook"><i class="small material-icons">thumb_up</i></a>
+          {% endif %}
+        </td>
+        <td align="center">
+          {% if course.booking_system %}
+            <a href={{ course.booking_system }} target="_new" type="button" class="btn btn-primary" aria-label="Boka">Boka</a>
+          {% endif %}
+        </td>
+
+        <td>
+          <form method="POST" action="edit-course">
+            <input type="hidden" id="course_id" name="course_id" value="{{ course.course_id }}"/>
+            <button type="submit" action="edit-course" class="btn btn-warning" aria-label="Uppdatera">
+              Uppdatera
+            </button>
+            </form>
+        </td>
+        {% if course.user_id == user.id or user.id == 1 %}
+          <td>
+                <button type="button" class="btn btn-danger pull-right" aria-label="Radera" onClick="deleteGolfcourse({{ course.course_id }})">
+                  Radera
+                </button>
+          </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+
+  </table>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-6">
+      <div class="alert alert-warning" role="alert">
+        <center><h4>Under konstruktion!</h4></center>
+        Denna sida är under uppbyggnad.
+      </div>
+    </div>
+  </div>
+</div>
+{% if user.is_authenticated %}
+<a href="{{ url_for("user_views.add_course") }}" type="button" class="btn btn-primary" aria-label="Lägg till golfbana">Lägg till golfbana</a>
+{% endif %}
+
+{% endblock %}

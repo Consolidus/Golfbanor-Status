@@ -1,0 +1,55 @@
+/* === CLASS STYLES === */
+
+.navbar {
+  font-weight: bold;
+}
+
+.btn {
+  font-size: 12px;
+}
+
+/* === TAG STYLES === */
+
+html {
+  font-size: 0.8rem;
+}
+
+option:nth-child(1) {
+  font-weight: bold;
+}
+
+/* === INFOBOX ===  */
+/* Infobox container */
+.info-box {
+  display: flex;
+  width: 3rem;
+  height: 3rem;
+  background-color: #ffc107;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  color: #fff;
+  top: 50%;
+}
+
+/* Infobox text */
+.info-box .info-box-text {
+  visibility: hidden;
+  width: 180px;
+  background-color: salmon;
+  color: #fff;
+  text-align: center;
+  padding: 6px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the infobox on mouse over */
+.info-box:hover .info-box-text {
+  visibility: visible;
+}

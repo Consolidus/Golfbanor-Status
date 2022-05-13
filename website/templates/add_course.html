@@ -1,0 +1,180 @@
+{% extends "base.html" %} {% block title %}Lägg till golfbana{% endblock %} {% block content %}
+<h1 align="left">Lägg till ny golfbana</h1>
+<form method="POST">
+  {{ form.csrf_token() }}
+  <br />
+  <h6>Golfbana</h6>
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.course_name(class="form-control", type="text", id="course_name",
+        placeholder="{}") }}
+        <label for="course_name" class="form-label"
+          >{{ form.course_name.label }}</label
+        >
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.course_region(class="form-control", type="text", id="course_region",
+        placeholder="{}") }}
+        <label for="course_region" class="form-label"
+          >{{ form.course_region.label }}</label
+        >
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.course_country(class="form-control", type="text", id="course_country",
+        placeholder="{}") }}
+        <label for="course_country" class="form-label"
+          >{{ form.course_country.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+  <br />
+  <h6>Status</h6>
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.course_status(class="form-control", type="text", id="course_status",
+        placeholder="{}") }}
+        <label for="course_status" class="form-label"
+          >{{ form.course_status.label }}</label
+        >
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.from_date(class="form-control", type="text", id="from_date",
+        placeholder="{}") }}
+        <label for="from_date" class="form-label"
+          >{{ form.from_date.label }}</label
+        >
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.to_date(class="form-control", type="text", id="to_date",
+        placeholder="{}") }}
+        <label for="to_date" class="form-label">{{ form.to_date.label }}</label>
+      </div>
+    </div>
+  </div>
+  <br />
+  <h6>Info</h6>
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.undantag(class="form-control", type="text", id="undantag",
+        placeholder="{}") }}
+        <label for="undantag" class="form-label"
+          >{{ form.undantag.label }}</label
+        >
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.competition(class="form-control", type="text", id="competition",
+        placeholder="{}") }}
+        <label for="competition" class="form-label"
+          >{{ form.competition.label }}</label
+        >
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.updated_by(class="form-control", type="text", id="updated_by",
+        placeholder="{}") }}
+        <label for="updated_by" class="form-label"
+          >{{ form.updated_by.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <h6>Källor</h6>
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.info_source(class="form-control", type="text", id="info_source",
+        placeholder="{}") }}
+        <label for="info_source" class="form-label"
+          >{{ form.info_source.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.facebook_url(class="form-control", type="text", id="facebook_url",
+        placeholder="{}") }}
+        <label for="facebook_url" class="form-label"
+          >{{ form.facebook_url.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.website_url(class="form-control", type="text", id="website_url",
+        placeholder="{}") }}
+        <label for="website_url" class="form-label"
+          >{{ form.website_url.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.booking_system(class="form-control", type="text", id="booking_system",
+        placeholder="{}") }}
+        <label for="booking_system" class="form-label"
+          >{{ form.booking_system.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.coordinates(class="form-control", type="text", id="coordinates",
+        placeholder="{}") }}
+        <label for="coordinates" class="form-label"
+          >{{ form.coordinates.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-2">
+      <div class="form-floating">
+        {{ form.google_maps_url(class="form-control", type="text",
+        id="google_maps_url", placeholder="{}") }}
+        <label for="google_maps_url" class="form-label"
+          >{{ form.google_maps_url.label }}</label
+        >
+      </div>
+    </div>
+  </div>
+
+  <br />
+  <div align="left">
+    <a href="{{ url_for("views.home") }}" class="btn btn-primary">Back</a>
+    <button type="submit" class="btn btn-primary">Add Course</button>
+  </div>
+</form>
+
+{% endblock %}
