@@ -13,7 +13,7 @@ def create_app():
     app = Flask(__name__)
     app.config["SECRET_KEY"] = os.environ.get("SECRET_KEY", None)
     # app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{DB_NAME}"
-    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL", None)
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_FIXED_URL", None)
     app.config["SEND_FILE_MAX_AGE_DEFAULT"] = 0
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.init_app(app)
