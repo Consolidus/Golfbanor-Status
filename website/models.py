@@ -1,26 +1,28 @@
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+
 from . import db
+
 
 # Course database model
 class Golfcourse(db.Model):
     course_id = db.Column(db.Integer, primary_key=True)
     course_name = db.Column(db.String(100), unique=True)
-    course_region = db.Column(db.String(50))
+    course_region = db.Column(db.String(100))
     course_country = db.Column(db.String(50))
-    course_status = db.Column(db.String(50))
+    course_status = db.Column(db.String(100))
     from_date = db.Column(db.Date)
     to_date = db.Column(db.Date)
     undantag = db.Column(db.String(100))
-    competition = db.Column(db.String(20))
+    competition = db.Column(db.String(100))
     last_update = db.Column(db.Date, default=func.now())
-    updated_by = db.Column(db.String(50))
-    info_source = db.Column(db.String(50))
+    updated_by = db.Column(db.String(100))
+    info_source = db.Column(db.String(100))
     facebook_url = db.Column(db.String(100))
     website_url = db.Column(db.String(100))
     booking_system = db.Column(db.String(100))
-    coordinates = db.Column(db.String(40))
-    google_maps_url = db.Column(db.String(80))
+    coordinates = db.Column(db.String(100))
+    google_maps_url = db.Column(db.String(100))
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
 

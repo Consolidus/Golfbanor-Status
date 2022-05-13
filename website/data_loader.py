@@ -1,14 +1,27 @@
-import pandas as pd
+import os
 import sqlite3
 
+import pandas as pd
+import psycopg2
+from dotenv import load_dotenv
+from sqlalchemy import create_engine
+
+load_dotenv()
 
 # Load the course data from CSV
 sheet_url = "https://www.dropbox.com/s/q52kbxrqopp5sla/Golfbanor%20Status%20-%20Golfbanor%20Status.csv?dl=1"
 df = pd.read_csv(sheet_url, engine="python", sep=",", quoting=1, quotechar='"')
 
+"""
+# Local SQLITE database
 # Connect to database
 conn = sqlite3.connect("website/golfcourse_database.db")
 c = conn.cursor()
+"""
+
+db = create_engine(os.environ.get("DATABASE_FIXED_URL", None))
+conn = db.connect()
+
 
 # Create column names
 headers = [
