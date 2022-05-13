@@ -68,3 +68,6 @@ df.drop_duplicates("course_name", inplace=True)
 # Save dataframe to database
 df.to_sql("golfcourse", conn, if_exists="append", index=False)
 print("Bandata överförd till databas.")
+
+# for col in df.columns:
+#     print(col, df[col].str.len().max())
